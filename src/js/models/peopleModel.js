@@ -13,7 +13,7 @@ function peopleModel() {
 
     this.isCharacterAlreadySaved = function (_character) {
         var characterList = myLocalStorage.getLocalList(constants.STORAGE_KEY);
-        return characterList.find(character => character.name == _character.name);
+        return characterList.find(character => character.fullName == _character.fullName);
     }
 
     this.deleteCharacter = function (_character) {
@@ -21,7 +21,7 @@ function peopleModel() {
         var positionToDelete = -1;
 
         for (var index = 0; index < list.length; index++) {
-            if (list[index].name == _character.name) {
+            if (list[index].fullName == _character.fullName) {
                 positionToDelete = index;
             }
         }

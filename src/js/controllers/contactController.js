@@ -1,4 +1,4 @@
-import manageData from '../utils/manageData.js';
+import dataManager from '../utils/dataManager.js';
 
 function validateEmtpyField(event) {
   var inputNode = $(this);
@@ -86,7 +86,7 @@ function contactController() {
   emailInputNode.one('blur', validateEmailField);
   commentsInputNode.one('blur', validateEmtpyField);
 
-  var dataManager = new manageData();
+  var dataManagerObject = new dataManager();
 
   $('#submitButton').click(function () {
     var firstName = firstNameInputNode.val();
@@ -99,7 +99,7 @@ function contactController() {
       comments: comments
     }
   
-    dataManager.postData('../../../template/simpleEmail.php', data, function (error, data) {
+    dataManagerObject.postData('../../../template/simpleEmail.php', data, function (error, data) {
       if (!error) {
         window.location.hash = '#/contact/greetings'
       }

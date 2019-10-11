@@ -1,4 +1,4 @@
-function manageData() {
+function dataManager() {
 
     this.postData = function(_url, data, cbk) {
         $.ajax({
@@ -10,7 +10,6 @@ function manageData() {
             cbk(null, data)
         })
         .fail(function (error) {
-            debugger;
             cbk(error)
         })
     }
@@ -31,4 +30,4 @@ function manageData() {
 
 
 
-export default manageData;
+export default dataManager;
