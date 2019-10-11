@@ -1,4 +1,4 @@
-import postData from '../utils/manageData.js';
+import { postData } from '../utils/manageData.js';
 
 function validateEmtpyField(event) {
   var inputNode = $(this);

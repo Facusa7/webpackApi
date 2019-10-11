@@ -1,5 +1,4 @@
 function postData (url, data, cbk) {
-    debugger;
     $.ajax({
       url: url,
       method: 'POST',
@@ -14,4 +13,17 @@ function postData (url, data, cbk) {
       })
   }
 
-  export default postData
+  function getData(_url, _showResults, _showError) {
+    $.ajax({
+        type: 'GET',
+        url: _url
+    })
+    .done(function (data) {
+        _showResults(data);
+    })
+    .fail(function (error) {
+       _showError(error);
+    })
+}
+
+  export { postData, getData }
