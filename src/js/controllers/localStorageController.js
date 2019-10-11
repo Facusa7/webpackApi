@@ -1,12 +1,17 @@
-import { getLocalList } from "../utils/localStorage";
-import { deleteCharacter } from '../models/people.js'
-import { showRow } from "../utils/designRows.js";
+import customLocalStorage from "../utils/localStorage";
+import peopleModel from '../models/peopleModel.js';
+import tableDesigner from "../utils/tableDesigner.js";
 import * as constants from '../models/constants.js'
 
 function localStorageController() {
-    var list = getLocalList(constants.STORAGE_KEY);
+    var people = new peopleModel();
+    var myLocalStorage = new customLocalStorage();
+    var tableDesignerObject = new tableDesigner();
+
+    var list = myLocalStorage.getLocalList(constants.STORAGE_KEY);
+
     for (var index = 0; index < list.length; index++) {
-        showRow(list[index], 'tableBody', 'Eliminar', deleteCharacter);        
+        tableDesignerObject.showRow(list[index], 'tableBody', constants.DELETE, people.deleteCharacter);        
     }
 }
 

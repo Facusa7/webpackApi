@@ -1,4 +1,4 @@
-import { postData } from '../utils/manageData.js';
+import manageData from '../utils/manageData.js';
 
 function validateEmtpyField(event) {
   var inputNode = $(this);
@@ -28,11 +28,6 @@ function validateEmtpyField(event) {
   validateButton();
 }
 
-/**
-* validateEmailField es una función que valida que el campo sea email
-*
-* @param {HTMLEvent} event
-*/
 function validateEmailField(event) {
   var inputNode = $(this)
 
@@ -72,10 +67,6 @@ function validateEmailField(event) {
   validateButton();
 }
 
-/**
-* validateButton habilita el botón de submit si existen
-* al menos tres nodos con la clase is-valid
-*/
 function validateButton() {
   var validInputNodes = $('.is-valid');
   var submitButtonNode = $('#submitButton');
@@ -86,7 +77,6 @@ function validateButton() {
   }
 }
 
-
 function contactController() {
   var firstNameInputNode = $('#firstName');
   var emailInputNode = $('#email');
@@ -95,6 +85,8 @@ function contactController() {
   firstNameInputNode.one('blur', validateEmtpyField);
   emailInputNode.one('blur', validateEmailField);
   commentsInputNode.one('blur', validateEmtpyField);
+
+  var dataManager = new manageData();
 
   $('#submitButton').click(function () {
     var firstName = firstNameInputNode.val();
@@ -107,7 +99,7 @@ function contactController() {
       comments: comments
     }
   
-    postData('../../../template/simpleEmail.php', data, function (error, data) {
+    dataManager.postData('../../../template/simpleEmail.php', data, function (error, data) {
       if (!error) {
         window.location.hash = '#/contact/greetings'
       }
