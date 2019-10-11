@@ -1,4 +1,5 @@
 function postData (url, data, cbk) {
+    debugger;
     $.ajax({
       url: url,
       method: 'POST',
@@ -8,6 +9,7 @@ function postData (url, data, cbk) {
         cbk(null, data)
       })
       .fail(function (error) {
+          debugger;
         cbk(error)
       })
   }
