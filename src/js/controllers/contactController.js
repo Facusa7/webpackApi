@@ -1,3 +1,5 @@
+import postData from '../utils/manageData.js';
+
 function validateEmtpyField(event) {
   var inputNode = $(this);
 
@@ -84,6 +86,7 @@ function validateButton() {
   }
 }
 
+
 function contactController() {
   var firstNameInputNode = $('#firstName');
   var emailInputNode = $('#email');
@@ -92,6 +95,25 @@ function contactController() {
   firstNameInputNode.one('blur', validateEmtpyField);
   emailInputNode.one('blur', validateEmailField);
   commentsInputNode.one('blur', validateEmtpyField);
+
+  $('#submitButton').click(function () {
+    var firstName = firstNameInputNode.val();
+    var email = emailInputNode.val();
+    var comments = commentsInputNode.val();
+  
+    var data = {
+      firstName: firstName,
+      email: email,
+      comments: comments
+    }
+  
+    postData('../../../template/simpleEmail.php', data, function (error, data) {
+      if (!error) {
+        window.location.hash = '#/contact/greetings'
+      }
+    })
+  });
+
 }
 
 export default contactController;
