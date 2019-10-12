@@ -27,9 +27,7 @@ function peopleController() {
         }        
         
         if (_nextUrl) {
-            console.log(`Click definida con ${_nextUrl}`);
             $("#seeMore").one('click', function () {
-                console.log(`Click llamada con ${_nextUrl}`);
                 dataManagerObject.getData(_nextUrl, showResults, showError);
             });
         } else {

@@ -1,5 +1,4 @@
-function homeController(){
-    console.log('Se cargo la home')
+function homeController() {
 }
   
   export default homeController
