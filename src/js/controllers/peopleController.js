@@ -10,10 +10,12 @@ function peopleController() {
     var dataMapperObject = new dataMapper();
     var tableDesignerObject = new tableDesigner();
 
+    var _nextUrl = "";
+
     function showResults(_peopleData) {
         if (_peopleData.results) {
             var results = _peopleData.results;
-
+            _nextUrl = _peopleData.next;
             for (var i = 0; i < results.length; i++) {
 
                 var character = dataMapperObject.formatCharacter(results[i]);
@@ -22,15 +24,17 @@ function peopleController() {
                     tableDesignerObject.showRow(character, 'tableBody', constants.SAVE, people.saveCharacter);
                 }
             }
+        }        
+        
+        if (_nextUrl) {
+            console.log(`Click definida con ${_nextUrl}`);
+            $("#seeMore").one('click', function () {
+                console.log(`Click llamada con ${_nextUrl}`);
+                dataManagerObject.getData(_nextUrl, showResults, showError);
+            });
+        } else {
+            $("#seeMore").attr('disabled', true);
         }
-
-        $("#seeMore").on('click', function () {
-            if (_peopleData.next) {
-                dataManagerObject.getData(_peopleData.next, showResults, showError);
-            } else {
-                $(this).attr('disabled', true);
-            }
-        });
     }
 
     function showError(_error) {

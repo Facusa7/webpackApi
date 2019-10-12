@@ -44,7 +44,7 @@ function dataMapper() {
   
   this.formatCharacter = function(_data) {
     var translatedGender = translateGender(_data.gender);
-    var translatedEyeColor = translateGender(_data.eye_color);
+    var translatedEyeColor = translateEyeColor(_data.eye_color);
     var formattedHeight = _data.height + " cm";
     var formattedMass = _data.mass + " kg";
 
